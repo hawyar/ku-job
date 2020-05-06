@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
+const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
+const checkObjectId = require("../../middleware/checkObjectId");
 
 // @route   GET api/profile/me
 // @desc    Get current user profile
@@ -65,7 +67,10 @@ router.post(
     if (linkedinusername) profileFields.linkedinusername = linkedinusername;
 
     if (skills) {
+      //split with "," delimeter then map through to trim extra spaces.
       skillsList = skills.split(",").map((skill) => skill.trim());
+
+      // to makre sure each entry is unique
       uniqueSet = new Set(skillsList);
       uniqueSkills = Array.from(uniqueSet);
       profileFields.skills = uniqueSkills;
@@ -83,15 +88,48 @@ router.post(
 
         return res.json(profile);
       }
+      //create new profile
       profile = new Profile(profileFields);
+
       await profile.save();
+
       res.json(profile);
-      await O;
     } catch (error) {
       console.log(err.message);
       res.status(500).send("Server Error");
     }
   }
 );
+
+// @route   GET api/profile
+// @desc    Get all profiles
+// @access  Public
+router.get("/", async (req, res) => {
+  try {
+    const profile = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profile);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   GET api/profile/user/:userid
+// @desc    Get profile by user ID
+// @access  Public
+router.get("/user/:user_id", checkObjectId("user_id"), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name", "avatar"]);
+
+    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+
+    res.json(profile);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
