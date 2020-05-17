@@ -41,12 +41,15 @@ router.post(
           .json({ erros: [{ msg: "User already exists" }] });
       }
 
-      // get user gravatar
-      const avatar = gravatar.url(email, {
-        s: "200",
-        r: "pg",
-        d: "mm",
-      });
+      // get user gravatar ** updated
+      const avatar = normalize(
+        gravatar.url(email, {
+          s: "200",
+          r: "pg",
+          d: "mm",
+        }),
+        { forceHttps: true }
+      );
 
       user = new User({ name, email, avatar, password });
       // encrypt password

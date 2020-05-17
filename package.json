@@ -22,7 +22,7 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.11",
+    "mongoose": "^5.9.13",
     "request": "^2.88.2"
   },
   "devDependencies": {

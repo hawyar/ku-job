@@ -3,34 +3,36 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
-  company: {
-    type: String,
-    required: true,
+  user: {
+    type: Schema.Types.ObjectId,
   },
   title: {
     type: String,
     required: true,
   },
-  experiencelevel: {
+  name: String,
+  avatar: String,
+  description: {
     type: String,
   },
   location: {
     type: String,
   },
-  jobtype: {
+  experiencelevel: {
     type: String,
   },
-  description: {
+  industry: {
     type: String,
   },
+  salary: Number,
   benefits: {
-    type: String,
+    type: Array,
   },
-
   saves: [
     {
       user: {
         type: Schema.Types.ObjectId,
+        ref: "users",
       },
     },
   ],
@@ -38,11 +40,14 @@ const JobSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
+        ref: "users",
       },
       text: {
         type: String,
-        require: true,
+        required: true,
       },
+      name: String,
+      avatar: String,
       date: {
         type: Date,
         default: Date.now,
