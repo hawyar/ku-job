@@ -11,7 +11,7 @@ const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 
 // @route   POST api/users
-// @desc    Regiter user
+// @desc    Create user
 // @access  Public
 router.post(
   "/",
@@ -41,21 +41,17 @@ router.post(
           .json({ erros: [{ msg: "User already exists" }] });
       }
 
-      // get user gravatar ** updated
-      const avatar = normalize(
-        gravatar.url(email, {
-          s: "200",
-          r: "pg",
-          d: "mm",
-        }),
-        { forceHttps: true }
-      );
+      // get user gravatar
+      const avatar = gravatar.url(email, {
+        s: "200",
+        r: "pg",
+        d: "mm",
+      });
 
       user = new User({ name, email, avatar, password });
-      // encrypt password
+
       const salt = await bcrypt.genSalt(10);
 
-      // hash password
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();

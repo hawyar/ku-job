@@ -67,10 +67,9 @@ router.post(
     if (linkedinusername) profileFields.linkedinusername = linkedinusername;
 
     if (skills) {
-      //split with "," delimeter then map through to trim extra spaces.
       skillsList = skills.split(",").map((skill) => skill.trim());
 
-      // to makre sure each entry is unique
+      // to make sure each entry is unique
       uniqueSet = new Set(skillsList);
       uniqueSkills = Array.from(uniqueSet);
       profileFields.skills = uniqueSkills;
@@ -88,6 +87,7 @@ router.post(
 
         return res.json(profile);
       }
+
       //create new profile
       profile = new Profile(profileFields);
 
