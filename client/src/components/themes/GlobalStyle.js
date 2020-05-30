@@ -9,9 +9,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body, html {
-        font-family: ${(props) => props.theme.fonts.main};
+       font-family: 'Inter', sans-serif;;
         height: 100%;
-        background-color: ${(props) => props.theme.colors.kindaWhite}
     }
 `;
 
