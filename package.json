@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "hawyar",
   "license": "ISC",
@@ -23,7 +25,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
-    "request": "^2.88.2"
+    "react-normalize": "^0.4.4",
+    "request": "^2.88.2",
+    "styled-components": "^5.1.1",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
