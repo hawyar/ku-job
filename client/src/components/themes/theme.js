@@ -1,15 +1,15 @@
 export default {
-  font: {
+  fonts: {
     main: "Inter, sans-serif",
     code: "Roboto Mono, monospace",
   },
-  color: {
+  colors: {
     mightyBlue: "#10316b",
     crispyOrange: "#e25822",
     darkDay: "#000000",
     kindaWhite: "#ececeb",
   },
-  breakpoint: {
+  breakpoints: {
     mobile: "only screen and (max-width: 50rem)",
     tablet: "only screen and (max-width: 65rem)",
   },
