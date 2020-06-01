@@ -1,24 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 const Navbar = () => (
   <div>
     <StyledNav>
       <Wrapper>
-        <MainLogo>Placeholder</MainLogo>
+        <MainLogo to="/">Norcom</MainLogo>
+
         <LinkWrapper>
           <li>
-            <a href="/">Pricing</a>
+            <Link to="/">Pricing</Link>
           </li>
           <li>
-            <a href="/">Blog</a>
+            <Link to="/">Blog</Link>
           </li>
           <li>
-            <a href="/">Careers</a>
+            <Link to="/">Careers</Link>
           </li>
         </LinkWrapper>
         <div>
-          <StyledButton style={{ marginRight: "20px" }}>Log in</StyledButton>
-          <StyledButton primary>Sign up</StyledButton>
+          <Link to="/login">
+            <StyledButton style={{ marginRight: "20px" }}>Log in</StyledButton>
+          </Link>
+
+          <Link to="/register">
+            <StyledButton primary>Sign up</StyledButton>
+          </Link>
         </div>
       </Wrapper>
     </StyledNav>
@@ -26,7 +33,8 @@ const Navbar = () => (
 );
 
 const StyledNav = styled.nav`
-  margin-top: 50px;
+  color: black;
+  margin: 0 auto;
 `;
 
 const Wrapper = styled.div`
@@ -34,17 +42,19 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 4rem;
-  background-color: #e25822;
-  width: 75vw;
+  padding: 1rem 0rem;
+  /* background-color: #252a34; */
+
   margin: 0 auto;
-  border-radius: 5px;
+  /* box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.14); */
 `;
 
-const MainLogo = styled.h3`
+const MainLogo = styled(Link)`
   flex: 1;
   font-size: 16px;
-  font-weight: 800;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
 `;
 
 const LinkWrapper = styled.ul`
@@ -54,27 +64,45 @@ const LinkWrapper = styled.ul`
 
   li {
     margin-right: 20px;
+
     :last-child {
       margin-right: 0px;
     }
 
     a {
-      color: black;
+      color: inherit;
       text-decoration: none;
       font-size: 14px;
+      position: relative;
+
+      text-decoration: none;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 2px;
+      transition: background-size 0.3s;
+
+      :hover {
+        background-size: 100% 2px;
+      }
+
+      :focus {
+        background-size: 100% 2px;
+      }
     }
   }
 `;
 
 const StyledButton = styled.button`
   padding: 9px 18px;
-  background-color: ${(props) => (props.primary ? "#10316b" : "#ececeb")};
-  border-radius: 5px;
+  background-color: ${(props) => (props.primary ? "#252a34" : "#eaeaea")};
+  border-radius: 2px;
   border: none;
   color: ${(props) => (props.primary ? "white" : "black")};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.17);
+  cursor: pointer;
 `;
 
 export default Navbar;
