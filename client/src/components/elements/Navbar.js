@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Button } from "../elements/Button";
 const Navbar = () => (
   <div>
     <StyledNav>
       <Wrapper>
-        <MainLogo to="/">Norcom</MainLogo>
+        <MainLogo to="/">Qandil</MainLogo>
 
         <LinkWrapper>
           <li>
@@ -20,11 +21,15 @@ const Navbar = () => (
         </LinkWrapper>
         <div>
           <Link to="/login">
-            <StyledButton style={{ marginRight: "20px" }}>Log in</StyledButton>
+            <Button style={{ marginRight: "20px" }} outline>
+              Log in
+            </Button>
           </Link>
 
           <Link to="/register">
-            <StyledButton primary>Sign up</StyledButton>
+            <Button primary shadow>
+              Sign up
+            </Button>
           </Link>
         </div>
       </Wrapper>
@@ -33,7 +38,7 @@ const Navbar = () => (
 );
 
 const StyledNav = styled.nav`
-  color: black;
+  color: #e5e5e5;
   margin: 0 auto;
 `;
 
@@ -54,7 +59,9 @@ const MainLogo = styled(Link)`
   font-size: 16px;
   color: black;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 900;
+  position: relative;
+  text-transform: uppercase;
 `;
 
 const LinkWrapper = styled.ul`
@@ -91,18 +98,6 @@ const LinkWrapper = styled.ul`
       }
     }
   }
-`;
-
-const StyledButton = styled.button`
-  padding: 9px 18px;
-  background-color: ${(props) => (props.primary ? "#252a34" : "#eaeaea")};
-  border-radius: 2px;
-  border: none;
-  color: ${(props) => (props.primary ? "white" : "black")};
-  font-weight: 500;
-  font-size: 14px;
-  box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
 `;
 
 export default Navbar;

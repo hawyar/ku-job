@@ -1,13 +1,23 @@
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import ReactIsCapsLockActive from "@matsun/reactiscapslockactive";
+import * as yup from "yup";
+
+const SignupSchema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().min(8),
+  password2: yup.string().min(8),
+});
 
 const Register = () => {
   // watch password for match validation
-  const { register, handleSubmit, errors, watch } = useForm({ mode: "onBlur" });
+  const { register, handleSubmit, errors, watch } = useForm({
+    mode: "onBlur",
+    nativeValidation: true,
+    validationSchema: SignupSchema,
+  });
 
-  //password with initial value of none
   const password = useRef({});
 
   //watch password with form-hooks
@@ -16,6 +26,7 @@ const Register = () => {
   // event: get target to reset form after submission
   // data: get form data to send to server
   const onSubmit = (data, event) => {
+    alert(JSON.stringify(data));
     event.target.reset(); // reset the form after submission
   };
 
@@ -23,21 +34,22 @@ const Register = () => {
     <div>
       <CenteredContainer>
         <h1>Sign up</h1>
-        <ReactIsCapsLockActive>
-          {(active) => (
-            <span>Caps lock is {active ? "active" : "inactive"}</span>
-          )}
-        </ReactIsCapsLockActive>
-        <span>Create your account</span>
 
         <StyledForm>
+          <label for="name">Name</label>
           <StyledInput
+            id="name"
             name="name"
-            ref={register({ required: true, maxLength: 20 })}
+            required
+            ref={register({
+              maxLength: 30,
+              required: "Name is required",
+            })}
             placeholder="Name"
             autoComplete="off"
           />
-          {errors.name && <span>error</span>}
+          {errors.name && <span>{errors.name.message}</span>}
+
           <StyledInput
             name="email"
             placeholder="Email Address"
@@ -47,6 +59,7 @@ const Register = () => {
           {errors.email && <span>Email Address is required</span>}
           <StyledInput
             name="password"
+            type="password"
             placeholder="Password"
             autoComplete="off"
             ref={register({
@@ -57,6 +70,7 @@ const Register = () => {
           {errors.password && <p>{errors.password.message}</p>}
           <StyledInput
             name="password2"
+            type="password"
             placeholder="Password"
             autoComplete="off"
             ref={register({
@@ -86,11 +100,16 @@ const Register = () => {
 
 const CenteredContainer = styled.div`
   margin: 5rem 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  p {
+    a {
+      color: red;
+    }
+  }
 `;
 
 const StyledButton = styled.button`

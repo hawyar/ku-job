@@ -51,9 +51,10 @@ const JumboHeader = styled.h1`
   letter-spacing: -0.3rem;
   margin: 20px 0px;
   line-height: 5rem;
+  color: #ea9a96;
 
   span {
-    color: #ff2e63;
+    color: #e5e5e5;
   }
 `;
 
