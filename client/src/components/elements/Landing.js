@@ -1,7 +1,8 @@
 import React from "react";
 import TextLoop from "react-text-loop";
-// import QuickRegister from "../elements/QuickRegister";
-import { Box, Image, Text, Link } from "@chakra-ui/core";
+import { Box, Image, Text } from "@chakra-ui/core";
+import HeroImg from "../../assets/img/07.png";
+import QuickRegister from "./QuickRegister";
 const Landing = () => {
   const jobFields = [
     "Engineering",
@@ -24,34 +25,37 @@ const Landing = () => {
           <Text
             fontWeight="bold"
             textTransform="uppercase"
-            fontSize="lg"
+            fontSize="cl"
             letterSpacing="wide"
             color="brand.700"
           >
             <TextLoop>{listItem}</TextLoop>
           </Text>
-          <Link
+          <Text
             mt={1}
             display="block"
             fontSize={{ sm: "4xl", xl: "6xl" }}
             lineHeight="normal"
-            fontWeight="semibold"
-            href="#"
+            fontWeight="7"
           >
             Jumpstart your career with one resume
-          </Link>
-          <Text mt={6} color="gray.500" width={{ xl: "70%" }}>
+          </Text>
+          <Text mt={2} color="gray.500" width={{ xl: "60%" }}>
             Getting a new business off the ground is a lot of hard work. Here
             are five ideas you can use to find your first customers.
           </Text>
+
+          <QuickRegister />
         </Box>
         <Box flexShrink="0">
           <Image
+            display={{ sm: "none", xl: "block" }}
             rounded="md"
+            width={{ md: 40, lg: 560, xl: 560 }}
             objectFit="cover"
-            size="lg"
-            src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            alt="Woman paying for a purchase"
+            src={HeroImg}
+            size={{ sm: "100%", xl: "md" }}
+            alt="Connections"
           />
         </Box>
       </Box>

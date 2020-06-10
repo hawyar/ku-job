@@ -1,28 +1,33 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../elements/Button";
+import React, { useState } from "react";
+import { Input, Button, Box } from "@chakra-ui/core";
+
 const QuickRegister = () => {
+  const [value, setValue] = useState("");
+  const handleChange = (e) => setValue(e);
   return (
-    <div>
-      <InputContainer
-        name="email"
-        type="email"
-        required
-        placeholder="Email Address"
-        style={{ marginRight: "2rem", borderRadius: "2px" }}
-        autoComplete="off"
+    <Box
+      display="flex"
+      flexDirection={{ sm: "column", xl: "row" }}
+      alignItems="center"
+      margin={{ sm: "2rem 0 1.2rem 0", xl: "2rem 0" }}
+      width={{ sm: "100%", lg: "100%", xl: "75%" }}
+    >
+      <Input
+        value={value}
+        onChange={handleChange}
+        placeholder="Enter email address"
+        size="md"
+        width={{ sm: "100%", xl: "70%" }}
       />
-      <Button primary>Apply now</Button>
-    </div>
+      <Button
+        width={{ sm: "100%", xl: "auto" }}
+        mt={{ sm: "1.25rem", xl: "0" }}
+        ml={{ xl: "1rem" }}
+      >
+        Get Started
+      </Button>
+    </Box>
   );
 };
-
-const InputContainer = styled.input`
-  background-color: white;
-  border: solid 0.5px #252a34;
-  padding: 10px 14px;
-  border-radius: 2px;
-  width: 220px;
-`;
 
 export default QuickRegister;
