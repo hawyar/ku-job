@@ -33,10 +33,8 @@ const Register = () => {
   return (
     <div>
       <CenteredContainer>
-        <h1>Sign up</h1>
-
+        <h1 style={{ color: "white" }}>Sign up</h1>
         <StyledForm>
-          <label for="name">Name</label>
           <StyledInput
             id="name"
             name="name"
@@ -99,7 +97,7 @@ const Register = () => {
 };
 
 const CenteredContainer = styled.div`
-  margin: 5rem 0;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;

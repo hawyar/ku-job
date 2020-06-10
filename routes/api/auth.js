@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 // @route   GET api/auth
-// @desc    Test route
+// @desc    Get
 // @access  Public
 router.get("/", auth, async (req, res) => {
   try {
@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// @route   POST api/users
+// @route   POST api/auth
 // @desc    Auth user & get token
 // @access  Public
 router.post(
@@ -63,6 +63,7 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
+        //change expiration date ******
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;

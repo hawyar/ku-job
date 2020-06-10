@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import TextLoop from "react-text-loop";
-
+// import QuickRegister from "../elements/QuickRegister";
+import { Box, Image, Text, Link } from "@chakra-ui/core";
 const Landing = () => {
   const jobFields = [
     "Engineering",
@@ -12,67 +12,52 @@ const Landing = () => {
   ];
 
   const listItem = jobFields.map((e) => <span>{e}</span>);
+
   return (
     <div>
-      <Wrapper>
-        <div>
-          <TextWrapper>
-            <JumboHeader>
-              Start your career in <TextLoop>{listItem}</TextLoop> <br />
-              with one resume.
-            </JumboHeader>
-          </TextWrapper>
-          <ParaWrapper>
-            Start your career with our auto-generated resume. Apply to thousands
-            of jobs across different fields. Start your career with our
-            auto-generated resume.
-          </ParaWrapper>
-        </div>
-        <ImageWrapper />
-      </Wrapper>
+      <Box
+        py="1.25rem"
+        px={{ sm: "2rem", md: "6rem", lg: "10rem" }}
+        display={{ md: "flex" }}
+      >
+        <Box mt={{ base: 4, md: 0 }} mr={{ md: 6 }} mb={{ base: 6 }}>
+          <Text
+            fontWeight="bold"
+            textTransform="uppercase"
+            fontSize="cl"
+            letterSpacing="wide"
+            color="teal.600"
+          >
+            <TextLoop>{listItem}</TextLoop>
+          </Text>
+          <Link
+            mt={1}
+            display="block"
+            fontSize="lg"
+            lineHeight="normal"
+            fontWeight="semibold"
+            href="#"
+          >
+            Finding customers for your new business
+          </Link>
+          <Text mt={2} color="gray.500" width={{ xl: "60%" }}>
+            Getting a new business off the ground is a lot of hard work. Here
+            are five ideas you can use to find your first customers.
+          </Text>
+        </Box>
+        <Box flexShrink="0">
+          <Image
+            rounded="md"
+            width={{ md: 40, lg: 560, xl: 560 }}
+            backgroundSize="contain"
+            backgroundRepeat="repeat"
+            src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="Woman paying for a purchase"
+          />
+        </Box>
+      </Box>
     </div>
   );
 };
 
-const Wrapper = styled.div`
-  padding: 0;
-  margin: 50px auto;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const TextWrapper = styled.div`
-  width: 570px;
-`;
-
-const JumboHeader = styled.h1`
-  font-size: 4.7rem;
-  font-weight: 900;
-  letter-spacing: -0.3rem;
-  margin: 20px 0px;
-  line-height: 5rem;
-  color: #ea9a96;
-
-  span {
-    color: #e5e5e5;
-  }
-`;
-
-const ParaWrapper = styled.p`
-  margin: 40px 0;
-  width: 65%;
-  font-size: 18px;
-  line-height: 24px;
-`;
-
-const ImageWrapper = styled.div`
-  box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.2);
-  width: 625px;
-  height: 540px;
-  border-radius: 5px;
-  background-image: url("https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; /* Resize the background image to cover the entire container */
-`;
 export default Landing;

@@ -1,103 +1,79 @@
 import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Button } from "../elements/Button";
-const Navbar = () => (
-  <div>
-    <StyledNav>
-      <Wrapper>
-        <MainLogo to="/">Qandil</MainLogo>
+import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
 
-        <LinkWrapper>
-          <li>
-            <Link to="/">Pricing</Link>
-          </li>
-          <li>
-            <Link to="/">Blog</Link>
-          </li>
-          <li>
-            <Link to="/">Careers</Link>
-          </li>
-        </LinkWrapper>
-        <div>
-          <Link to="/login">
-            <Button style={{ marginRight: "20px" }} outline>
-              Log in
-            </Button>
-          </Link>
-
-          <Link to="/register">
-            <Button primary shadow>
-              Sign up
-            </Button>
-          </Link>
-        </div>
-      </Wrapper>
-    </StyledNav>
-  </div>
+const MenuItems = ({ children }) => (
+  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+    {children}
+  </Text>
 );
 
-const StyledNav = styled.nav`
-  color: #e5e5e5;
-  margin: 0 auto;
-`;
+const Navbar = (props) => {
+  const [show, setShow] = React.useState(false);
+  const handleToggle = () => setShow(!show);
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0rem;
-  /* background-color: #252a34; */
+  return (
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
+      paddingY="1.25rem"
+      bg="brand.900"
+      color="white"
+      {...props}
+    >
+      <Flex align="center" mr={5}>
+        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+          K& Career
+        </Heading>
+      </Flex>
 
-  margin: 0 auto;
-  /* box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.14); */
-`;
+      <Box display={{ sm: "block", md: "none" }} onClick={handleToggle}>
+        <svg
+          fill="white"
+          width="12px"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </Box>
 
-const MainLogo = styled(Link)`
-  flex: 1;
-  font-size: 16px;
-  color: black;
-  text-decoration: none;
-  font-weight: 900;
-  position: relative;
-  text-transform: uppercase;
-`;
+      <Box
+        display={{ sm: show ? "block" : "none", md: "flex" }}
+        width={{ sm: "full", md: "auto" }}
+        alignItems="center"
+        flexGrow={0}
+      >
+        <MenuItems>Jobs</MenuItems>
+        <MenuItems>Blog</MenuItems>
+        <MenuItems>Career Center</MenuItems>
+      </Box>
 
-const LinkWrapper = styled.ul`
-  list-style: none;
-  display: flex;
-  margin-right: 30px;
-
-  li {
-    margin-right: 20px;
-
-    :last-child {
-      margin-right: 0px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      font-size: 14px;
-      position: relative;
-
-      text-decoration: none;
-      background-image: linear-gradient(currentColor, currentColor);
-      background-position: 0% 100%;
-      background-repeat: no-repeat;
-      background-size: 0% 2px;
-      transition: background-size 0.3s;
-
-      :hover {
-        background-size: 100% 2px;
-      }
-
-      :focus {
-        background-size: 100% 2px;
-      }
-    }
-  }
-`;
-
+      <Box
+        display={{ sm: show ? "block" : "none", md: "block" }}
+        mt={{ base: 4, md: 0 }}
+      >
+        <Box
+          display={{ sm: show ? "flex" : "block" }}
+          flexDirection={{ sm: show ? "column" : "row" }}
+        >
+          <Button size="md" bg="transparent" border="1px">
+            Log in
+          </Button>
+          <Button
+            ml={{ sm: show ? "0" : "1.25rem" }}
+            backgroundColor="brand.700"
+            size="md"
+            mt={{ sm: show ? "1.25rem" : "0" }}
+          >
+            Button
+          </Button>
+        </Box>
+      </Box>
+    </Flex>
+  );
+};
 export default Navbar;
