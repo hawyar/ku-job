@@ -60,16 +60,23 @@ const Navbar = (props) => {
           display={{ sm: show ? "flex" : "block" }}
           flexDirection={{ sm: show ? "column" : "row" }}
         >
-          <Button size="md" bg="transparent" border="1px">
+          <Button
+            _hover={{ backgroundColor: "brand.800", borderColor: "brand.800" }}
+            size="md"
+            bg="transparent"
+            border="1px"
+          >
             Log in
           </Button>
           <Button
             ml={{ sm: show ? "0" : "1.25rem" }}
-            backgroundColor="brand.700"
+            backgroundColor="brand.600"
+            color="brand.900"
             size="md"
             mt={{ sm: show ? "1.25rem" : "0" }}
+            _hover={{ backgroundColor: "brand.800" }}
           >
-            Button
+            Sign up
           </Button>
         </Box>
       </Box>

@@ -11,10 +11,10 @@ const customTheme = {
   colors: {
     ...theme.colors,
     brand: {
-      900: "#303960",
-      800: "#ea9a96",
-      700: "#f8b24f",
       600: "#e5e5e5",
+      700: "#f8b24f",
+      800: "#ea9a96",
+      900: "#303960",
     },
   },
   breakpoints,

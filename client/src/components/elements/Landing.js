@@ -24,23 +24,23 @@ const Landing = () => {
           <Text
             fontWeight="bold"
             textTransform="uppercase"
-            fontSize="cl"
+            fontSize="lg"
             letterSpacing="wide"
-            color="teal.600"
+            color="brand.700"
           >
             <TextLoop>{listItem}</TextLoop>
           </Text>
           <Link
             mt={1}
             display="block"
-            fontSize="lg"
+            fontSize={{ sm: "4xl", xl: "6xl" }}
             lineHeight="normal"
             fontWeight="semibold"
             href="#"
           >
-            Finding customers for your new business
+            Jumpstart your career with one resume
           </Link>
-          <Text mt={2} color="gray.500" width={{ xl: "60%" }}>
+          <Text mt={6} color="gray.500" width={{ xl: "70%" }}>
             Getting a new business off the ground is a lot of hard work. Here
             are five ideas you can use to find your first customers.
           </Text>
@@ -48,9 +48,8 @@ const Landing = () => {
         <Box flexShrink="0">
           <Image
             rounded="md"
-            width={{ md: 40, lg: 560, xl: 560 }}
-            backgroundSize="contain"
-            backgroundRepeat="repeat"
+            objectFit="cover"
+            size="lg"
             src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             alt="Woman paying for a purchase"
           />
