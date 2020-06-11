@@ -1,150 +1,120 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
-import * as yup from "yup";
-
-const SignupSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().min(8),
-  password2: yup.string().min(8),
-});
+import {
+  Box,
+  Heading,
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  InputRightElement,
+  InputGroup,
+  Text,
+} from "@chakra-ui/core";
 
 const Register = () => {
-  // watch password for match validation
-  const { register, handleSubmit, errors, watch } = useForm({
+  // get emial from quick register localStorage
+  const quickRegisterEmail = localStorage.getItem("quickRegisterEmail");
+
+  const { handleSubmit, errors, register } = useForm({
     mode: "onBlur",
-    nativeValidation: true,
-    validationSchema: SignupSchema,
   });
 
-  const password = useRef({});
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
-  //watch password with form-hooks
-  password.current = watch("password", "");
-
-  // event: get target to reset form after submission
-  // data: get form data to send to server
-  const onSubmit = (data, event) => {
-    alert(JSON.stringify(data));
-    event.target.reset(); // reset the form after submission
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
-    <div>
-      <CenteredContainer>
-        <h1 style={{ color: "white" }}>Sign up</h1>
-        <StyledForm>
-          <StyledInput
-            id="name"
-            name="name"
-            required
-            ref={register({
-              maxLength: 30,
-              required: "Name is required",
-            })}
-            placeholder="Name"
-            autoComplete="off"
-          />
-          {errors.name && <span>{errors.name.message}</span>}
+    <Box
+      paddingTop={{ base: "2rem" }}
+      paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
+    >
+      <Heading paddingBottom={{ base: "1.25rem" }} size="md">
+        Sign up
+      </Heading>
 
-          <StyledInput
-            name="email"
-            placeholder="Email Address"
-            autoComplete="off"
-            ref={register({ required: true })}
-          />
-          {errors.email && <span>Email Address is required</span>}
-          <StyledInput
-            name="password"
-            type="password"
-            placeholder="Password"
-            autoComplete="off"
-            ref={register({
-              required: "Password is required",
-              minLength: { value: 6, message: "Passowrd is too short" },
-            })}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-          <StyledInput
-            name="password2"
-            type="password"
-            placeholder="Password"
-            autoComplete="off"
-            ref={register({
-              required: "Password is required",
-              minLength: { value: 6, message: "Passowrd is too short" },
-              validate: (value) =>
-                value === password.current || "The password do not match",
-            })}
-          />
-          {/* display error message from above validation */}
-          {errors.password2 && <p>{errors.password2.message}</p>}
-          <StyledButton type="submit" primary onClick={handleSubmit(onSubmit)}>
-            Submit
-          </StyledButton>
-        </StyledForm>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isRequired display="grid" gridRowGap="1rem">
+          <Box>
+            <FormLabel htmlFor="name">Name</FormLabel>
+            <Input
+              name="name"
+              ref={register({ required: true })}
+              placeholder="Name"
+              type="name"
+              aria-describedby="name-helper-text"
+              isRequired
+              backgroundColor="gray.50"
+            />
+            <Text>{errors.name && "Name is required"}</Text>
+          </Box>
+          <Box>
+            <FormLabel htmlFor="email">Email address</FormLabel>
+            <Input
+              backgroundColor="gray.50"
+              ref={register}
+              placeholder="Email Address"
+              type="email"
+              name="email"
+              aria-describedby="email-helper-text"
+              isRequired
+              defaultValue={
+                quickRegisterEmail !== "" || undefined ? quickRegisterEmail : ""
+              }
+            />
+          </Box>
+          <Text>{errors.email && "Email Address is required"}</Text>
+          <Box>
+            <FormLabel htmlFor="name">Password</FormLabel>
 
-        <p>
-          Already have an account <strong>?</strong>{" "}
-          <span>
-            <a href="/login">Log in</a>
-          </span>
-        </p>
-      </CenteredContainer>
-    </div>
+            <InputGroup size="md">
+              <Input
+                backgroundColor="gray.50"
+                ref={register}
+                name="password"
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                placeholder="Enter password"
+              />
+              <InputRightElement width="4.5rem">
+                <Button
+                  h="1.75rem"
+                  size="sm"
+                  onClick={handleClick}
+                  backgroundColor="gray.400"
+                  _hover={{ backgroundColor: "gray.400" }}
+                >
+                  {show ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Box>
+          <Box>
+            <FormLabel htmlFor="name">Confirm Password</FormLabel>
+
+            <InputGroup size="md">
+              <Input
+                backgroundColor="gray.50"
+                ref={register}
+                name="password2"
+                pr="4.5rem"
+                type="password"
+                placeholder="Confirm password"
+              />
+            </InputGroup>
+          </Box>
+          <Box>
+            <Button width={{ sm: "100%", xl: "auto" }} type="submit">
+              SUBMIT
+            </Button>
+          </Box>
+        </FormControl>
+      </form>
+    </Box>
   );
 };
-
-const CenteredContainer = styled.div`
-  margin: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  p {
-    a {
-      color: red;
-    }
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 9px 18px;
-  background-color: ${(props) => (props.primary ? "#252a34" : "#eaeaea")};
-  border-radius: 2px;
-  border: none;
-  color: ${(props) => (props.primary ? "white" : "black")};
-  font-weight: 500;
-  font-size: 14px;
-  box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
-  margin-bottom: 3rem;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-
-  input {
-    margin: 1rem 0;
-    padding: 8px 12px;
-    width: 220px;
-  }
-`;
-
-const StyledInput = styled.input`
-  background-color: white;
-  border: solid 0.5px #252a34;
-  box-shadow: 10px 10px 66px 0px rgba(0, 0, 0, 0.12);
-
-  height: 40px;
-  border-radius: 2px;
-
-  :focus {
-    border-color: black;
-  }
-`;
 
 export default Register;

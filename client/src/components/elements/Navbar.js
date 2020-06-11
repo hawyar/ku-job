@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+import { Box, Heading, Flex, Link, Button } from "@chakra-ui/core";
 
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+const MenuItems = ({ children, link }) => (
+  <Link href={link} mt={{ base: 4, md: 0 }} mr={6} display="block">
     {children}
-  </Text>
+  </Link>
 );
 
 const Navbar = (props) => {
@@ -17,21 +17,20 @@ const Navbar = (props) => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
-      paddingY="1.25rem"
-      bg="brand.900"
-      color="white"
+      paddingX={{ sm: "2rem", md: "4rem", lg: "6rem" }}
+      paddingY="2rem"
+      color="brand.900"
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+        <Heading as="a" href="/" size="lg" letterSpacing={"-.1rem"}>
           K& Career
         </Heading>
       </Flex>
 
       <Box display={{ sm: "block", md: "none" }} onClick={handleToggle}>
         <svg
-          fill="white"
+          fill="brand.900"
           width="12px"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +46,10 @@ const Navbar = (props) => {
         alignItems="center"
         flexGrow={0}
       >
-        <MenuItems>Jobs</MenuItems>
+        <MenuItems link="/">Dashboard</MenuItems>
+        <MenuItems link="/register">Career Center</MenuItems>
         <MenuItems>Blog</MenuItems>
-        <MenuItems>Career Center</MenuItems>
+        <MenuItems>About us</MenuItems>
       </Box>
 
       <Box
@@ -62,19 +62,21 @@ const Navbar = (props) => {
         >
           <Button
             _hover={{ backgroundColor: "brand.800", borderColor: "brand.800" }}
-            size="md"
+            size="sm"
             bg="transparent"
             border="1px"
           >
             Log in
           </Button>
           <Button
+            as="a"
             ml={{ sm: show ? "0" : "1.25rem" }}
-            backgroundColor="brand.600"
-            color="brand.900"
-            size="md"
+            backgroundColor="brand.900"
+            color="brand.600"
+            size="sm"
             mt={{ sm: show ? "1.25rem" : "0" }}
-            _hover={{ backgroundColor: "brand.800" }}
+            _hover={{ backgroundColor: "brand.800", color: "brand.900" }}
+            href="/register"
           >
             Sign up
           </Button>
