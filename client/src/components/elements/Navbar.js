@@ -23,8 +23,14 @@ const Navbar = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="a" href="/" size="lg" letterSpacing={"-.1rem"}>
-          K& Career
+        <Heading
+          as="a"
+          href="/"
+          fontSize={{ sm: "1.5rem" }}
+          letterSpacing={"-.09rem"}
+          fontFamily="Playfair Display"
+        >
+          Norem
         </Heading>
       </Flex>
 

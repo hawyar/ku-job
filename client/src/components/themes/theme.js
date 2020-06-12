@@ -18,6 +18,11 @@ const customTheme = {
     },
   },
   breakpoints,
+  fonts: {
+    body: "Inter, sans-serif",
+    heading: "Inter, sans-serif",
+    mono: "Menlo, monospace",
+  },
 };
 
 export default customTheme;
