@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, List, ListIcon, ListItem, Button, Box } from "@chakra-ui/core";
-import * as yup from "yup";
 
-let EmailSchema = yup.object().shape({
-  email: yup.string().email().required(),
-});
 const QuickRegister = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(localStorage.getItem("quickEmail") || "");
+
+  useEffect(() => {
+    localStorage.setItem("quickEmail", value);
+  });
   const handleChange = (e) => {
-    e.preventDefault();
-    localStorage.setItem("quickRegisterEmail", e.target.value);
     setValue(e.target.value);
   };
 
@@ -31,6 +29,7 @@ const QuickRegister = () => {
           aria-label="Email Address"
           aria-describedby="Email Address"
           isRequired={true}
+          defaultValue=""
           value={value}
           onChange={handleChange}
           placeholder="Enter email address"
@@ -42,13 +41,13 @@ const QuickRegister = () => {
         <Button
           href="/register"
           as="a"
+          fontSize="md"
           size="lg"
           width={{ sm: "100%", xl: "auto" }}
           mt={{ sm: "1", xl: "0" }}
           ml={{ xl: "1rem" }}
           _hover={{
             backgroundColor: "brand.800",
-            borderColor: "brand.800",
             color: "brand.900",
           }}
           backgroundColor="brand.900"

@@ -4,11 +4,12 @@ import { Box, Text, Image } from "@chakra-ui/core";
 import QuickRegister from "./QuickRegister";
 import HeroImg from "../../assets/img/hero-builder.png";
 import ResumeSection from "../resume-example/ResumeSection";
+import ResumeDemo from "../resume-demo/ResumeDemo";
 const Landing = () => {
   const jobFields = [
-    "Engineering",
-    "Finanace",
-    "Business",
+    "Musicians",
+    "Bloggers",
+    "Photographers",
     "Education",
     "Petrolium",
   ];
@@ -26,7 +27,7 @@ const Landing = () => {
       >
         <Box mr={{ md: 6 }}>
           <Text
-            width={{ xl: "90%" }}
+            width={{ sm: "90%", xl: "90%" }}
             letterSpacing="tight"
             fontWeight="700"
             display="block"
@@ -34,18 +35,20 @@ const Landing = () => {
             fontSize={{ sm: "4xl", xl: "5.2rem" }}
             lineHeight={{ sm: "1.2", xl: " 5.6rem" }}
           >
-            We help you start your career in
+            We help
             <Text color="brand.800">
               <TextLoop>{listItem}</TextLoop>
             </Text>
+            create their online presence
           </Text>
           <Text mt={12} color="gray.500" width={{ xl: "60%" }}>
-            Getting into a new career is not easy. Let us do the heavy lifting
-            by providing a magic resume that actaully works.
+            Start earning by taking on offers from different companies. Start
+            earning by taking on offers from different companies.
           </Text>
           <QuickRegister />
         </Box>
         <Box flexShrink="0">
+          {/* <HeroCards /> */}
           <Image
             display={{ sm: "none", xl: "block" }}
             rounded="md"
@@ -57,7 +60,9 @@ const Landing = () => {
           />
         </Box>
       </Box>
+
       <ResumeSection />
+      <ResumeDemo />
     </div>
   );
 };

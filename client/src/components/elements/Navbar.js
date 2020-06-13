@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Heading, Flex, Link, Button } from "@chakra-ui/core";
 
-const MenuItems = ({ children, link }) => (
+const MenuItems = ({ children, link, CustomDarkMode }) => (
   <Link href={link} mt={{ base: 4, md: 0 }} mr={6} display="block">
     {children}
   </Link>
@@ -21,6 +21,10 @@ const Navbar = (props) => {
       paddingY="2rem"
       color="brand.900"
       {...props}
+      position="sticky"
+      top="0"
+      zIndex="12"
+      backgroundColor="white"
     >
       <Flex align="center" mr={5}>
         <Heading
@@ -67,10 +71,13 @@ const Navbar = (props) => {
           flexDirection={{ sm: show ? "column" : "row" }}
         >
           <Button
+            as="a"
             _hover={{ backgroundColor: "brand.800", borderColor: "brand.800" }}
-            size="sm"
+            fontSize="sm"
+            size="md"
             bg="transparent"
             border="1px"
+            href="/login"
           >
             Log in
           </Button>
@@ -79,7 +86,8 @@ const Navbar = (props) => {
             ml={{ sm: show ? "0" : "1.25rem" }}
             backgroundColor="brand.900"
             color="brand.600"
-            size="sm"
+            fontSize="sm"
+            size="md"
             mt={{ sm: show ? "1.25rem" : "0" }}
             _hover={{ backgroundColor: "brand.800", color: "brand.900" }}
             href="/register"
