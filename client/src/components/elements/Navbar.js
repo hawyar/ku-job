@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, Flex, Link, Button } from "@chakra-ui/core";
-import { LinkWrapper } from "../utils/LinkWrapper";
+import { LinkWrapper } from "../utils";
 const MenuItems = ({ children, link }) => (
   <Link href={link} mt={{ base: 4, md: 0 }} mr={6} display="block">
     {children}
@@ -78,15 +78,13 @@ const Navbar = (props) => {
               fontSize="sm"
               size="md"
               bg="transparent"
-              border="1px"
             >
               Log in
             </Button>
           </LinkWrapper>
 
-          <LinkWrapper>
+          <LinkWrapper to="/register">
             <Button
-              as="a"
               ml={{ sm: show ? "0" : "1.25rem" }}
               backgroundColor="brand.900"
               color="brand.600"
@@ -94,7 +92,6 @@ const Navbar = (props) => {
               size="md"
               mt={{ sm: show ? "1.25rem" : "0" }}
               _hover={{ backgroundColor: "brand.800", color: "brand.900" }}
-              href="/register"
             >
               Sign up
             </Button>

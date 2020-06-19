@@ -1,1 +1,1 @@
-export * from "./LinkConfig";
+export * from "./LinkWrapper";

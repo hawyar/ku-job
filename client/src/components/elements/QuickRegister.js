@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, List, ListIcon, ListItem, Button, Flex } from "@chakra-ui/core";
-import { LinkWrapper } from "../utils/LinkWrapper";
+import { LinkWrapper } from "../utils";
 
 const QuickRegister = () => {
   const [value, setValue] = useState(localStorage.getItem("quickEmail") || "");

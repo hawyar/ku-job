@@ -31,15 +31,19 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== password2) {
+      console.log("Passwords do not match");
+    }
     console.log("Success");
+    sessionStorage.clear();
   };
   return (
     <Flex
-      // paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
+      px={{ sm: "2rem", md: "6rem", lg: "10rem" }}
       direction="column"
       align={{ sm: "left", xl: "center" }}
       justify="center"
-      paddingX={{ sm: "2rem", md: "4rem", lg: "6rem" }}
     >
       <form onSubmit={(e) => onSubmit(e)}>
         <FormControl

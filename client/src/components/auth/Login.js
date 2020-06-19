@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <Flex
       py={12}
-      // paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
+      px={{ sm: "2rem", md: "6rem", lg: "10rem" }}
       direction="column"
       align={{ sm: "left", xl: "center" }}
       justify="center"

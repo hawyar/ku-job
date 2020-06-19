@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Flex, Grid } from "@chakra-ui/core";
+import { Grid } from "@chakra-ui/core";
 import Hero from "../elements/Hero";
 const Landing = () => {
   const jobFields = [
