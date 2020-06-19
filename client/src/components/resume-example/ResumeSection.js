@@ -15,17 +15,17 @@ const ResumeSection = () => {
         justifyContent="space-between"
         flexDirection={{ sm: "column", xl: "row" }}
       >
-        <Box width={{ sm: "100%", xl: "85%" }}>
+        <Box width={{ sm: "100%", xl: "55%" }}>
           <Heading
             color="brand.600"
             as="h2"
             mr="2rem"
             fontWeight="700"
-            fontSize={{ sm: "2xl", xl: "6xl" }}
-            lineHeight={{ sm: "1.2", xl: " 4.4rem" }}
+            fontSize={{ sm: "2xl", xl: "4xl" }}
+            lineHeight={{ sm: "1.2", xl: " normal" }}
             letterSpacing="tight"
           >
-            Recuriter approved resumes that actuallly works
+            Why Norem?
           </Heading>
           <Text
             mt={12}
@@ -33,9 +33,9 @@ const ResumeSection = () => {
             width="75%"
             mb={{ sm: "12", xl: "0" }}
           >
-            We customize each reusme based on your intesrest and needs. Our pdf
-            generator is grid-based which means we dont rely on templates. You
-            cant fully customize your resume.
+            We customize each reusme based on your intesrest and needs. Our
+            creator studio is grid-based which means we dont rely on templates.
+            You control it all.
           </Text>
           <ResumeCardBase />
         </Box>

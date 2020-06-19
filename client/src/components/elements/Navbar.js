@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Heading, Flex, Link, Button } from "@chakra-ui/core";
-
-const MenuItems = ({ children, link, CustomDarkMode }) => (
+import { LinkWrapper } from "../utils/LinkWrapper";
+const MenuItems = ({ children, link }) => (
   <Link href={link} mt={{ base: 4, md: 0 }} mr={6} display="block">
     {children}
   </Link>
@@ -17,7 +17,7 @@ const Navbar = (props) => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      paddingX={{ sm: "2rem", md: "4rem", lg: "6rem" }}
+      px={{ sm: "2rem", md: "4rem", lg: "6rem" }}
       paddingY="2rem"
       color="brand.900"
       {...props}
@@ -57,9 +57,8 @@ const Navbar = (props) => {
         flexGrow={0}
       >
         <MenuItems link="/">Dashboard</MenuItems>
-        <MenuItems link="/register">Career Center</MenuItems>
-        <MenuItems>Blog</MenuItems>
-        <MenuItems>About us</MenuItems>
+        <MenuItems link="/register">Studio</MenuItems>
+        <MenuItems>Career Center</MenuItems>
       </Box>
 
       <Box
@@ -70,30 +69,36 @@ const Navbar = (props) => {
           display={{ sm: show ? "flex" : "block" }}
           flexDirection={{ sm: show ? "column" : "row" }}
         >
-          <Button
-            as="a"
-            _hover={{ backgroundColor: "brand.800", borderColor: "brand.800" }}
-            fontSize="sm"
-            size="md"
-            bg="transparent"
-            border="1px"
-            href="/login"
-          >
-            Log in
-          </Button>
-          <Button
-            as="a"
-            ml={{ sm: show ? "0" : "1.25rem" }}
-            backgroundColor="brand.900"
-            color="brand.600"
-            fontSize="sm"
-            size="md"
-            mt={{ sm: show ? "1.25rem" : "0" }}
-            _hover={{ backgroundColor: "brand.800", color: "brand.900" }}
-            href="/register"
-          >
-            Sign up
-          </Button>
+          <LinkWrapper to="/login">
+            <Button
+              _hover={{
+                backgroundColor: "brand.800",
+                borderColor: "brand.800",
+              }}
+              fontSize="sm"
+              size="md"
+              bg="transparent"
+              border="1px"
+            >
+              Log in
+            </Button>
+          </LinkWrapper>
+
+          <LinkWrapper>
+            <Button
+              as="a"
+              ml={{ sm: show ? "0" : "1.25rem" }}
+              backgroundColor="brand.900"
+              color="brand.600"
+              fontSize="sm"
+              size="md"
+              mt={{ sm: show ? "1.25rem" : "0" }}
+              _hover={{ backgroundColor: "brand.800", color: "brand.900" }}
+              href="/register"
+            >
+              Sign up
+            </Button>
+          </LinkWrapper>
         </Box>
       </Box>
     </Flex>

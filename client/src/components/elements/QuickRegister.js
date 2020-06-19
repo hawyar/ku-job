@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Input, List, ListIcon, ListItem, Button, Box } from "@chakra-ui/core";
+import { Input, List, ListIcon, ListItem, Button, Flex } from "@chakra-ui/core";
+import { LinkWrapper } from "../utils/LinkWrapper";
 
 const QuickRegister = () => {
   const [value, setValue] = useState(localStorage.getItem("quickEmail") || "");
 
   useEffect(() => {
-    localStorage.setItem("quickEmail", value);
+    sessionStorage.setItem("quickEmail", value);
   });
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="left"
-      marginTop="12"
-      width="100%"
-    >
-      <Box
-        width={{ sm: "100%", xl: "75%" }}
-        display="flex"
-        flexDirection={{ sm: "column", xl: "row" }}
+    <Flex direction="column" width="100%" align="center" justify="center">
+      <Flex
+        width={{ sm: "100%", xl: "65%" }}
+        direction={{ sm: "column", xl: "row" }}
       >
         <Input
+          width={{ sm: "100%", xl: "65%" }}
           backgroundColor="gray.50"
           aria-label="Email Address"
           aria-describedby="Email Address"
@@ -36,32 +31,28 @@ const QuickRegister = () => {
           size="lg"
           padding="2"
           width="100%"
-          marginBottom="4"
+          mb={[2, 4, 0, 0]}
         />
-        <Button
-          href="/register"
-          as="a"
-          fontSize="md"
-          size="lg"
-          width={{ sm: "100%", xl: "auto" }}
-          mt={{ sm: "1", xl: "0" }}
-          ml={{ xl: "1rem" }}
-          _hover={{
-            backgroundColor: "brand.800",
-            color: "brand.900",
-          }}
-          backgroundColor="brand.900"
-          color="brand.600"
-        >
-          Get Started
-        </Button>
-      </Box>
-      <List
-        mt="6"
-        spacing={3}
-        display="flex"
-        flexDirection={{ sm: "column", xl: "row" }}
-      >
+
+        <LinkWrapper to="/register">
+          <Button
+            fontSize="md"
+            size="lg"
+            width={{ sm: "100%", xl: "auto" }}
+            mt={{ sm: "1", xl: "0" }}
+            ml={{ xl: "1rem" }}
+            _hover={{
+              backgroundColor: "brand.800",
+              color: "brand.900",
+            }}
+            backgroundColor="brand.900"
+            color="brand.600"
+          >
+            Get Started
+          </Button>
+        </LinkWrapper>
+      </Flex>
+      <List mt={12} display="flex" flexDirection={{ sm: "column", xl: "row" }}>
         <ListItem mr="8">
           <ListIcon icon="check-circle" color="gray.600" />
           Free 14-day trial
@@ -75,7 +66,7 @@ const QuickRegister = () => {
           24/7 Customer support
         </ListItem>
       </List>
-    </Box>
+    </Flex>
   );
 };
 

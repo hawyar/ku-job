@@ -17,7 +17,7 @@ const Register = () => {
 
   const [formData, setFromData] = useState({
     name: "",
-    email: localStorage.getItem("quickEmail") || "",
+    email: sessionStorage.getItem("quickEmail") || "",
     password: "",
     password2: "",
   });
@@ -26,7 +26,7 @@ const Register = () => {
 
   const onChange = (e) => {
     setFromData({ ...formData, [e.target.name]: e.target.value });
-    localStorage.setItem("quickEmail", email);
+    sessionStorage.setItem("quickEmail", email);
   };
 
   const onSubmit = async (e) => {
@@ -35,7 +35,6 @@ const Register = () => {
   };
   return (
     <Flex
-      py={12}
       // paddingX={{ sm: "2rem", md: "6rem", lg: "10rem" }}
       direction="column"
       align={{ sm: "left", xl: "center" }}
@@ -44,7 +43,6 @@ const Register = () => {
     >
       <form onSubmit={(e) => onSubmit(e)}>
         <FormControl
-          mt={6}
           isRequired
           display="grid"
           gridRowGap={{ sm: "1.5rem", xl: "1.8rem" }}

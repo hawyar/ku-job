@@ -1,11 +1,5 @@
 import React from "react";
 import {
-  ButtonGroup,
-  IconButton,
-  Flex,
-  // Editable,
-  // EditablePreview,
-  // EditableInput,
   Box,
   Tabs,
   TabPanel,
@@ -28,7 +22,7 @@ const ResumeDemo = () => {
         as="h2"
         mr="2rem"
         fontWeight="700"
-        fontSize={{ sm: "2xl", xl: "6xl" }}
+        fontSize={{ sm: "2xl", xl: "4xl" }}
         lineHeight={{ sm: "1.2", xl: " 4.4rem" }}
         letterSpacing="tight"
         mb={{ sm: "12", xl: "0" }}
